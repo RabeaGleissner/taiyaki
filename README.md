@@ -1,21 +1,27 @@
 # Taiyaki
 
-**TODO: Add description**
+Another Slack bot.
 
-## Installation
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `taiyaki` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:taiyaki, "~> 0.1.0"}
-  ]
-end
+```
+  mix deps.get
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/taiyaki](https://hexdocs.pm/taiyaki).
+### Run it in iex
 
+```
+ies -S mix
+
+{ok, pid} = Slack.Bot.start_link(SlackRtm, [], 'GENERATED_SLACK_TOKEN')
+```
+
+Stop it with:
+
+```
+Process.exit(pid, :kill)
+```
+
+### Run tests
+
+```
+mix test
+```
