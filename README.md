@@ -11,7 +11,7 @@ Another Slack bot.
 ```
 ies -S mix
 
-{ok, pid} = Slack.Bot.start_link(SlackRtm, [], 'GENERATED_SLACK_TOKEN')
+{ok, pid} = Slack.Bot.start_link(Slack.SlackRtm, [], 'GENERATED_SLACK_TOKEN')
 ```
 
 Stop it with:

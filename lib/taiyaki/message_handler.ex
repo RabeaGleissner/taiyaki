@@ -15,8 +15,8 @@ defmodule Taiyaki.MessageHandler do
   end
 
   defp create_response({:ok, user_id}) do
-    {:ok, "I'll let you know when #{user_id} comes online"}
+    {:ok, user_id, "I'll let you know when #{user_id} comes online"}
   end
 
-  defp create_response({:invalid, _}), do: {:invalid, "This is beyond my capabilities!"}
+  defp create_response({:invalid, _}), do: {:invalid, 'some_user', "This is beyond my capabilities!"}
 end
