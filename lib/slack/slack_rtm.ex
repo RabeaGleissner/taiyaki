@@ -12,6 +12,12 @@ defmodule Slack.SlackRtm do
     {:ok, state}
   end
 
+  def handle_event(presence_change = %{type: "presence_change"}, slack = %{users: users}, state) do
+    # presence_change map example: %{presence: "away", type: "presence_change", users: ["UKU1R3SKD"]}
+    #send_message("They just came online!", the_user_who_is_tracking, slack)
+    {:ok, state}
+  end
+
   def handle_event(_, _, state), do: {:ok, state}
 
   def handle_info({:message, text, channel}, slack, state) do

@@ -15,8 +15,11 @@ defmodule Taiyaki.MessageHandler do
   end
 
   defp create_response({:ok, user_id}) do
-    {:ok, user_id, "I'll let you know when #{user_id} comes online"}
+    [_, rest] = String.split(user_id, "@")
+    [clean_user_id, _] = String.split(rest, ">")
+
+    {:ok, clean_user_id, "I'll let you know when #{user_id} comes online"}
   end
 
-  defp create_response({:invalid, _}), do: {:invalid, 'some_user', "This is beyond my capabilities!"}
+  defp create_response({:invalid, _}), do: {:invalid, "", "This is beyond my capabilities!"}
 end
