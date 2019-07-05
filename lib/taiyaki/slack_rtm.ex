@@ -7,19 +7,17 @@ defmodule SlackRtm do
   end
 
   def handle_event(message = %{type: "message"}, slack, state) do
-    send_message("Hello! I'm the bot", message.channel, slack)
+    {_, response_message}= Taiyaki.MessageHandler.handle_message(message, slack.users)
+    send_message(response_message, message.channel, slack)
     {:ok, state}
   end
 
   def handle_event(_, _, state), do: {:ok, state}
 
   def handle_info({:message, text, channel}, slack, state) do
-    IO.puts("Sending message")
-
     send_message(text, channel, slack)
-
     {:ok, state}
   end
 
   def handle_info(_, _, state), do: {:ok, state}
-  end
+end
