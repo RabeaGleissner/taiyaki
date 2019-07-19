@@ -1,18 +1,7 @@
 defmodule Taiyaki do
-  @moduledoc """
-  Documentation for Taiyaki.
-  """
+  use Application
 
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> Taiyaki.hello()
-      :world
-
-  """
-  def hello do
-    :world
+  def start(_type, _args) do
+    Taiyaki.Supervisor.start_link(name: Taiyaki.Supervisor)
   end
 end
