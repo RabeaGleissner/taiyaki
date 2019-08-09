@@ -9,7 +9,7 @@ Another Slack bot.
 ### Run it in iex
 
 ```
-ies -S mix
+iex -S mix
 
 {ok, pid} = Slack.Bot.start_link(Slack.SlackRtm, [], 'GENERATED_SLACK_TOKEN')
 ```
