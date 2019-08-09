@@ -6,18 +6,13 @@ Another Slack bot.
   mix deps.get
 ```
 
-### Run it in iex
+### Run it
+
+Create a `.env` file in which you sent your generated Slack token. (you can use `dot_env` as a template)
 
 ```
-iex -S mix
+mix run --no-halt
 
-{ok, pid} = Slack.Bot.start_link(Slack.SlackRtm, [], 'GENERATED_SLACK_TOKEN')
-```
-
-Stop it with:
-
-```
-Process.exit(pid, :kill)
 ```
 
 ### Run tests
