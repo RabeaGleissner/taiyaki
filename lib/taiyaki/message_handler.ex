@@ -5,20 +5,20 @@ defmodule Taiyaki.MessageHandler do
     |> create_response
   end
 
-  defp parse_message(%{text: text}) do
+  defp parse_message(%{text: text, user: user}) do
     if String.contains?(text, "Where is") do
-      "Where is " <> user_id = text
-      {:ok, user_id}
+      "Where is " <> tracked_user_id = text
+      {:ok, tracked_user_id, user}
     else
       {:invalid, ""}
     end
   end
 
-  defp create_response({:ok, user_id}) do
-    [_, rest] = String.split(user_id, "@")
+  defp create_response({:ok, tracked_user_id, user}) do
+    [_, rest] = String.split(tracked_user_id, "@")
     [clean_user_id, _] = String.split(rest, ">")
 
-    {:ok, clean_user_id, "I'll let you know when #{user_id} comes online"}
+    {:ok, clean_user_id, user, "I'll let you know when #{tracked_user_id} comes online"}
   end
 
   defp create_response({:invalid, _}), do: {:invalid, "", "This is beyond my capabilities!"}

@@ -19,6 +19,7 @@ defmodule Taiyaki.MixProject do
 
   # Run "mix help deps" to learn about dependencies.
   defp deps do
-    [{:slack, github: "BlakeWilliams/Elixir-Slack", ref: "4812cf8"}]
+    #[{:slack, github: "BlakeWilliams/Elixir-Slack", ref: "4812cf8"}]
+    [{:slack, github: "BlakeWilliams/Elixir-Slack"}]
   end
 end
