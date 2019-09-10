@@ -11,6 +11,8 @@ Another Slack bot.
 Create a `.env` file in which you sent your generated Slack token. (you can use `dot_env` as a template)
 
 ```
+source .env
+
 mix run --no-halt
 
 ```
