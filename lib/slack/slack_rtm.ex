@@ -7,11 +7,11 @@ defmodule Slack.SlackRtm do
   end
 
   def handle_event(message = %{type: "message"}, slack, state) do
-    IO.puts("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
-    IO.inspect(message)
-    {_, user_id, requester, response_message} = Taiyaki.MessageHandler.handle_message(message, slack.users)
-    subscribe_presence([user_id], slack)
-    RequesterStore.put(:requester_store, requester, user_id)
+    {status, user_id, requester, response_message} = Taiyaki.MessageHandler.handle_message(message)
+    if status == :ok do
+      subscribe_presence([user_id], slack)
+      RequesterStore.put(:requester_store, requester, user_id)
+    end
     send_message(response_message, message.channel, slack)
     {:ok, state}
   end

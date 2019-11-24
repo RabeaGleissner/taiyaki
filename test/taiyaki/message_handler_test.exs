@@ -27,14 +27,14 @@ defmodule MessageHandlerTest do
     %{users: users, message: message, user_id: user_id}
   end
 
-  test "returns message for correct command", %{users: users, message: message, user_id: user_id} do
-    ret = Taiyaki.MessageHandler.handle_message(message, users)
+  test "returns message for correct command", %{message: message, user_id: user_id} do
+    ret = Taiyaki.MessageHandler.handle_message(message)
     assert ret == {:ok, "UKBN393PY", "UJY4BAA03", "I'll let you know when #{user_id} comes online"}
   end
 
-  test "returns error message when command is not recognised", %{users: users, message: message} do
+  test "returns error message when command is not recognised", %{message: message} do
     message = Map.put(message, :text, "No valid command")
-    ret = Taiyaki.MessageHandler.handle_message(message, users)
+    ret = Taiyaki.MessageHandler.handle_message(message)
     assert ret == {:invalid, "", "", "This is beyond my capabilities!"}
   end
 end

@@ -10,9 +10,7 @@ defmodule Taiyaki.RequesterStore do
   end
 
   def put(store, requester, tracked_user) do
-    IO.puts("&&&&&&&&&&&&")
-    IO.inspect(store)
-    current_requesters = Agent.get(store, fn requesters -> Map.get(requesters, tracked_user) end)
+    current_requesters = get(store, tracked_user)
     if current_requesters do
       Agent.update(store, fn store -> Map.put(store, tracked_user, [requester | current_requesters]) end)
     else

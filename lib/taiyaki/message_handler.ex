@@ -1,5 +1,5 @@
 defmodule Taiyaki.MessageHandler do
-  def handle_message(message, _) do
+  def handle_message(message) do
     message
     |> parse_message
     |> create_response
