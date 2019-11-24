@@ -2,7 +2,7 @@ defmodule Slack.SlackRtm do
   use Slack
   alias Taiyaki.RequesterStore
 
-  def handle_connect(slack, state) do
+  def handle_connect(_, state) do
     {:ok, state}
   end
 
@@ -16,11 +16,10 @@ defmodule Slack.SlackRtm do
     {:ok, state}
   end
 
-  def handle_event(presence_change = %{type: "presence_change"}, slack = %{users: users}, state) do
-    IO.puts("**************")
-    IO.inspect(presence_change)
-    # presence_change map example: %{presence: "away", type: "presence_change", users: ["UKU1R3SKD"]}
-    #send_message("They just came online!", the_user_who_is_tracking, slack)
+  def handle_event(presence_change = %{type: "presence_change", presence: "active"}, slack = _, state) do
+    %{user: tracked_user} = presence_change
+    requesters = RequesterStore.get(:requester_store, tracked_user)
+    send_message("They just came online!", List.first(requesters), slack)
     {:ok, state}
   end
 
