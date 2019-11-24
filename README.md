@@ -1,6 +1,8 @@
 # Taiyaki
 
-Another Slack bot.
+Slack bot.
+
+Ask it where a user is and it will notify you when the user comes online.
 
 ```
   mix deps.get
